@@ -31,7 +31,8 @@ public class Keywords {
     }
 
     public Keywords addOtherKeyword(String keyword){
-        this.otherKeywords.add(keyword);
-        return new Keywords(this.mainKeyword, this.otherKeywords);
+        List<String> newOtherKeywords = otherKeywords;
+        newOtherKeywords.add(keyword);
+        return new Keywords(this.mainKeyword, newOtherKeywords);
     }
 }
