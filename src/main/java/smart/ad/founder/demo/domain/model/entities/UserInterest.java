@@ -1,15 +1,10 @@
-package smart.ad.founder.demo.domain.model;
+package smart.ad.founder.demo.domain.model.entities;
 
-import javassist.compiler.ast.Keyword;
 import lombok.Getter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import smart.ad.founder.demo.domain.model.valueObjects.Keywords;
 import smart.ad.founder.demo.domain.model.valueObjects.TimeValObject;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "usersInterests")
@@ -40,13 +35,13 @@ public class UserInterest {
     })
     private TimeValObject timeValObject;
 
-    @Column(name = "category")
+    @Column(name = "categories")
     private String category;
 
-    @Column(name = "region")
+    @Column(name = "regions")
     private String region;
 
-    @Column(name = "active")
+    @Column(name = "actives")
     private boolean active;
 
     @ManyToOne(fetch = FetchType.EAGER)

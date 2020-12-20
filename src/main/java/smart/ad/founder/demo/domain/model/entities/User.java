@@ -1,4 +1,4 @@
-package smart.ad.founder.demo.domain.model;
+package smart.ad.founder.demo.domain.model.entities;
 
 import lombok.Getter;
 import org.hibernate.annotations.Fetch;

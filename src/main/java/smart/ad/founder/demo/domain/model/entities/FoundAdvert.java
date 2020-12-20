@@ -1,4 +1,4 @@
-package smart.ad.founder.demo.domain.model;
+package smart.ad.founder.demo.domain.model.entities;
 
 import lombok.Getter;
 
@@ -18,7 +18,7 @@ public class FoundAdvert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "url")
+    @Column(name = "ad_urls")
     private String url;
 
     @ManyToOne(fetch = FetchType.EAGER)
