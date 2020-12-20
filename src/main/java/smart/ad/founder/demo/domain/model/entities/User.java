@@ -47,4 +47,12 @@ public class User {
     public void setUserToken(String userToken) {
         this.userToken = userToken;
     }
+
+    public void setActiveInterests(List<UserInterest> activeInterests) {
+        this.activeInterests = activeInterests;
+    }
+
+    public void setPastInterests(List<UserInterest> pastInterests) {
+        this.pastInterests = pastInterests;
+    }
 }

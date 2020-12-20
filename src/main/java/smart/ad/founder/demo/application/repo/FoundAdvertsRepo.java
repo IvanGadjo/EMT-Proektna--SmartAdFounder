@@ -9,11 +9,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class FoundAdvertRepo {
+public class FoundAdvertsRepo {
 
     FoundAdvertRepoJPA foundAdvertRepoJPA;
 
-    public FoundAdvertRepo(FoundAdvertRepoJPA foundAdvertRepoJPA) {
+    public FoundAdvertsRepo(FoundAdvertRepoJPA foundAdvertRepoJPA) {
         this.foundAdvertRepoJPA = foundAdvertRepoJPA;
     }
 
@@ -25,8 +25,15 @@ public class FoundAdvertRepo {
         return foundAdvertRepoJPA.findById(id).orElseThrow(RuntimeException::new);
     }
 
-    public FoundAdvert createNewUser(FoundAdvert foundAdvert){
+    public FoundAdvert createNewFoundAdvert(FoundAdvert foundAdvert){
         return foundAdvertRepoJPA.save(foundAdvert);
+    }
+
+    public FoundAdvert editFoundAdvert(FoundAdvert foundAdvert){
+        FoundAdvert old = foundAdvertRepoJPA.findById(foundAdvert.getId()).orElseThrow(RuntimeException::new);
+        old.setUrl(foundAdvert.getUrl());
+        old.setUserInterest(foundAdvert.getUserInterest());
+        return foundAdvertRepoJPA.save(old);
     }
 
     public void deleteById(Long id){

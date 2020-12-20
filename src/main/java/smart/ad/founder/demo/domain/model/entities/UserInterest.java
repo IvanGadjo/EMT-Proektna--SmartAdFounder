@@ -87,6 +87,13 @@ public class UserInterest {
         this.active = active;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setFoundAdvert(FoundAdvert foundAdvert) {
+        this.foundAdvert = foundAdvert;
+    }
 
     // add keywords f-ja
     public void addKeywords(String keyword) {

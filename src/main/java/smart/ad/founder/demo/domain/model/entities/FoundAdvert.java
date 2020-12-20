@@ -36,4 +36,8 @@ public class FoundAdvert {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public void setUserInterest(UserInterest userInterest) {
+        this.userInterest = userInterest;
+    }
 }

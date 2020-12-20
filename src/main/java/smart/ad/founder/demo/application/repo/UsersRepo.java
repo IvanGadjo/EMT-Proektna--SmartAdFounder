@@ -9,11 +9,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class UserRepo {
+public class UsersRepo {
 
     UserRepoJPA userRepoJPA;
 
-    public UserRepo(UserRepoJPA userRepoJPA) {
+    public UsersRepo(UserRepoJPA userRepoJPA) {
         this.userRepoJPA = userRepoJPA;
     }
 
@@ -27,6 +27,15 @@ public class UserRepo {
 
     public User createNewUser(User user){
         return userRepoJPA.save(user);
+    }
+
+    public User editUser(User newUser){
+        User old = userRepoJPA.findById(newUser.getId()).orElseThrow(RuntimeException::new);
+        old.setUserToken(newUser.getUserToken());
+        old.setActiveInterests(newUser.getActiveInterests());
+        old.setPastInterests(newUser.getPastInterests());
+
+        return userRepoJPA.save(old);
     }
 
     public void deleteById(Long id){
