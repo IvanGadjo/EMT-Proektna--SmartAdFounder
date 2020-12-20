@@ -1,5 +1,6 @@
 package smart.ad.founder.demo.application.repo;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import smart.ad.founder.demo.domain.model.entities.FoundAdvert;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Service
 @Transactional
+//@Repository
 public class FoundAdvertsRepo {
 
     FoundAdvertRepoJPA foundAdvertRepoJPA;

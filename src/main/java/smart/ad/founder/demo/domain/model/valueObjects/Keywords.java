@@ -2,6 +2,7 @@ package smart.ad.founder.demo.domain.model.valueObjects;
 
 import lombok.Getter;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ public class Keywords {
 
     private String mainKeyword;
 
+    @ElementCollection
     private List<String> otherKeywords;
 
     @SuppressWarnings("unused")
