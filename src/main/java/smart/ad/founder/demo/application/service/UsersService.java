@@ -12,7 +12,7 @@ public interface UsersService {
 
     User editUser(User newUser);
 
-    User createNewUser(User foundAdvert);
+    User createNewUser(User user);
 
     void deleteUserById(Long id);
 }
