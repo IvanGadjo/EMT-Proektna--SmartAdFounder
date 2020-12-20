@@ -11,6 +11,7 @@ import java.util.List;
 @Transactional
 
 public class UserInterestRepo {
+
     UserInterestRepoJPA userInterestRepoJPA;
 
     public UserInterestRepo (UserInterestRepoJPA userInterestRepoJPA) {
