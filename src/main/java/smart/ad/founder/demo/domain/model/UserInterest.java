@@ -1,5 +1,6 @@
 package smart.ad.founder.demo.domain.model;
 
+import javassist.compiler.ast.Keyword;
 import lombok.Getter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -92,5 +93,8 @@ public class UserInterest {
     }
 
 
-    // add keywords f-ja 
+    // add keywords f-ja
+    public void addKeywords(String keyword) {
+        this.keywords = keywords.addOtherKeyword(keyword);
+    }
 }
