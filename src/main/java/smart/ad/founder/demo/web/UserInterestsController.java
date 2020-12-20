@@ -40,7 +40,7 @@ public class UserInterestsController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUserInterest(@PathParam("id") Long id) {
+    public void deleteUserInterest(@PathVariable("id") Long id) {
         userInterestsService.deleteUserInterestById(id);
     }
 }
