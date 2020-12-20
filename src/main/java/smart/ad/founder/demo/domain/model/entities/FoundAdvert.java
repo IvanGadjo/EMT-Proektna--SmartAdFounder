@@ -16,7 +16,7 @@ public class FoundAdvert {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "ad_urls")
     private String url;
