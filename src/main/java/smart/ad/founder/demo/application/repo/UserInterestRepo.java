@@ -25,6 +25,16 @@ public class UserInterestRepo {
         return userInterestRepoJPA.findById(id).orElseThrow(RuntimeException::new);
     }
 
+    public UserInterest editUserInterest(UserInterest newUserInterest) {
+        UserInterest old = userInterestRepoJPA.findById(newUserInterest.getId()).orElseThrow(RuntimeException::new);
+        old.setKeywords(newUserInterest.getKeywords());
+        old.setTimeValObject(newUserInterest.getTimeValObject());
+        old.setCategory(newUserInterest.getCategory());
+        old.setRegion(newUserInterest.getRegion());
+        old.setCategory(newUserInterest.getCategory());
+        return userInterestRepoJPA.save(old);
+    }
+
     public UserInterest saveNewUserInterest(UserInterest userInterest) {
         return userInterestRepoJPA.save(userInterest);
     }
