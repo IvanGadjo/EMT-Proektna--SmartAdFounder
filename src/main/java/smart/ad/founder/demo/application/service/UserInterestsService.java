@@ -4,7 +4,7 @@ import smart.ad.founder.demo.domain.model.entities.UserInterest;
 
 import java.util.List;
 
-public interface UserInterestService  {
+public interface UserInterestsService {
 
     List<UserInterest> findAllUserInterests();
 

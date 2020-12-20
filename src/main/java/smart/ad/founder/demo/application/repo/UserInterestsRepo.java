@@ -10,11 +10,11 @@ import java.util.List;
 @Service
 @Transactional
 
-public class UserInterestRepo {
+public class UserInterestsRepo {
 
     UserInterestRepoJPA userInterestRepoJPA;
 
-    public UserInterestRepo (UserInterestRepoJPA userInterestRepoJPA) {
+    public UserInterestsRepo(UserInterestRepoJPA userInterestRepoJPA) {
         this.userInterestRepoJPA = userInterestRepoJPA;
     }
 

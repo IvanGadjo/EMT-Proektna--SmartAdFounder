@@ -2,8 +2,8 @@ package smart.ad.founder.demo.application.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import smart.ad.founder.demo.application.repo.UserInterestRepo;
-import smart.ad.founder.demo.application.service.UserInterestService;
+import smart.ad.founder.demo.application.repo.UserInterestsRepo;
+import smart.ad.founder.demo.application.service.UserInterestsService;
 import smart.ad.founder.demo.domain.model.entities.UserInterest;
 
 import java.util.List;
@@ -11,37 +11,37 @@ import java.util.List;
 @Service
 @Transactional
 
-public class UserInterestServiceImpl implements UserInterestService {
+public class UserInterestsServiceImpl implements UserInterestsService {
 
-    UserInterestRepo userInterestRepo;
+    UserInterestsRepo userInterestsRepo;
 
-    public UserInterestServiceImpl(UserInterestRepo userInterestRepo) {
-        this.userInterestRepo = userInterestRepo;
+    public UserInterestsServiceImpl(UserInterestsRepo userInterestsRepo) {
+        this.userInterestsRepo = userInterestsRepo;
     }
 
     @Override
     public List<UserInterest> findAllUserInterests() {
-        return userInterestRepo.findAll();
+        return userInterestsRepo.findAll();
     }
 
     @Override
     public UserInterest findUserInterestById(Long id) {
-        return userInterestRepo.findById(id);
+        return userInterestsRepo.findById(id);
     }
 
     @Override
     public UserInterest editUserInterest(UserInterest newUserInterest) {
-        return userInterestRepo.editUserInterest(newUserInterest);
+        return userInterestsRepo.editUserInterest(newUserInterest);
     }
 
     @Override
     public UserInterest addNewUserInterest(UserInterest userInterest) {
-        return userInterestRepo.saveNewUserInterest(userInterest);
+        return userInterestsRepo.saveNewUserInterest(userInterest);
     }
 
     @Override
     public void deleteUserInterestById(Long id) {
-        userInterestRepo.deleteById(id);
+        userInterestsRepo.deleteById(id);
     }
 
 }
