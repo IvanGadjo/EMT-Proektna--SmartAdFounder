@@ -35,8 +35,8 @@ public class UserInterestsController {
     }
 
     @PostMapping("/createUserInterest")
-    public UserInterest userInterest(@RequestBody UserInterest userInterest) {
-        return userInterestsService.editUserInterest(userInterest);
+    public UserInterest createUserInterest(@RequestBody UserInterest userInterest) {
+        return userInterestsService.addNewUserInterest(userInterest);
     }
 
     @DeleteMapping("/{id}")
