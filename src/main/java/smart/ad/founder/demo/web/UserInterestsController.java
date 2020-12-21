@@ -30,13 +30,17 @@ public class UserInterestsController {
     }
 
     @PatchMapping("/editUserInterest")
-    public UserInterest editUserInterest(@RequestBody UserInterest newUserInterest) {
-        return userInterestsService.editUserInterest(newUserInterest);
+    public UserInterest editUserInterest(@RequestBody UserInterest newUserInterest,
+                                         @RequestParam Long userId,
+                                         @RequestParam(required = false) Long foundAdvertId) {
+        return userInterestsService.editUserInterest(newUserInterest,  userId, foundAdvertId);
     }
 
     @PostMapping("/createUserInterest")
-    public UserInterest createUserInterest(@RequestBody UserInterest userInterest) {
-        return userInterestsService.addNewUserInterest(userInterest);
+    public UserInterest createUserInterest(@RequestBody UserInterest userInterest,
+                                           @RequestParam Long userId,
+                                           @RequestParam(required = false) Long foundAdvertId) {
+        return userInterestsService.addNewUserInterest(userInterest, userId, foundAdvertId);
     }
 
     @DeleteMapping("/{id}")

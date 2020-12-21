@@ -1,6 +1,8 @@
 package smart.ad.founder.demo.domain.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import org.springframework.lang.Nullable;
 import smart.ad.founder.demo.domain.model.valueObjects.Keywords;
 import smart.ad.founder.demo.domain.model.valueObjects.TimeValObject;
 
@@ -45,9 +47,12 @@ public class UserInterest {
     private boolean active;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @Nullable
+    @JsonIgnore
     private FoundAdvert foundAdvert;
 
     @SuppressWarnings("unused")

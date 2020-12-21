@@ -34,7 +34,7 @@ public class FoundAdvertsRepo {
     public FoundAdvert editFoundAdvert(FoundAdvert foundAdvert){
         FoundAdvert old = foundAdvertRepoJPA.findById(foundAdvert.getId()).orElseThrow(RuntimeException::new);
         old.setUrl(foundAdvert.getUrl());
-        old.setUserInterest(foundAdvert.getUserInterest());
+        old.setUserInterest(foundAdvert.getUserInterests());
         return foundAdvertRepoJPA.save(old);
     }
 

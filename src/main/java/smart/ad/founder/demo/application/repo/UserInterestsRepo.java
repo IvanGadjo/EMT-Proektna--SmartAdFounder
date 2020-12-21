@@ -33,6 +33,8 @@ public class UserInterestsRepo {
         old.setCategory(newUserInterest.getCategory());
         old.setRegion(newUserInterest.getRegion());
         old.setCategory(newUserInterest.getCategory());
+        old.setUser(newUserInterest.getUser());
+        old.setFoundAdvert(newUserInterest.getFoundAdvert());
         return userInterestRepoJPA.save(old);
     }
 
