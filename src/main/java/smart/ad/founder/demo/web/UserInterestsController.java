@@ -2,9 +2,14 @@ package smart.ad.founder.demo.web;
 
 import org.springframework.web.bind.annotation.*;
 import smart.ad.founder.demo.application.service.UserInterestsService;
+import smart.ad.founder.demo.application.service.rest.RestService;
+import smart.ad.founder.demo.domain.model.entities.FoundAdvert;
 import smart.ad.founder.demo.domain.model.entities.UserInterest;
+import smart.ad.founder.demo.domain.model.valueObjects.Keywords;
 
 import javax.websocket.server.PathParam;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -14,9 +19,11 @@ import java.util.List;
 public class UserInterestsController {
 
     UserInterestsService userInterestsService;
+    RestService restService;
 
-    public UserInterestsController(UserInterestsService userInterestsService) {
+    public UserInterestsController(UserInterestsService userInterestsService, RestService restService) {
         this.userInterestsService = userInterestsService;
+        this.restService = restService;
     }
 
     @GetMapping("/all")
@@ -46,5 +53,19 @@ public class UserInterestsController {
     @DeleteMapping("/{id}")
     public void deleteUserInterest(@PathVariable("id") Long id) {
         userInterestsService.deleteUserInterestById(id);
+    }
+
+
+
+    // TESTING REST SERVICE
+    @GetMapping("/test/reklama5")
+    public List<FoundAdvert> testReklama5() throws IOException {
+
+        List<String> okwrds = new ArrayList<>();
+        okwrds.add("Sandero");
+        okwrds.add("Dajtenok");
+
+        Keywords keywords = new Keywords("Dacia", okwrds);
+        return restService.getAdsUrls_reklama5(keywords);
     }
 }
