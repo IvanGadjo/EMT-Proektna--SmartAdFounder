@@ -39,30 +39,19 @@ public class UserInterestsServiceImpl implements UserInterestsService {
         return userInterestsRepo.findById(id);
     }
 
+
     @Override
-    public UserInterest editUserInterest(UserInterest newUserInterest, Long userId, Long foundAdvertId) {
+    public UserInterest editUserInterest(UserInterest newUserInterest, Long userId) {
         User theUser = usersRepo.findById(userId);
         newUserInterest.setUser(theUser);
-
-        FoundAdvert theFoundAd = null;
-        if(foundAdvertId != null)
-            theFoundAd = foundAdvertsRepo.findById(foundAdvertId);
-
-        newUserInterest.setFoundAdvert(theFoundAd);
 
         return userInterestsRepo.editUserInterest(newUserInterest);
     }
 
     @Override
-    public UserInterest addNewUserInterest(UserInterest userInterest, Long userId, Long foundAdvertId) {
+    public UserInterest addNewUserInterest(UserInterest userInterest, Long userId) {
         User theUser = usersRepo.findById(userId);
         userInterest.setUser(theUser);
-
-        FoundAdvert theFoundAd = null;
-        if(foundAdvertId != null)
-            theFoundAd = foundAdvertsRepo.findById(foundAdvertId);
-
-        userInterest.setFoundAdvert(theFoundAd);
 
         return userInterestsRepo.saveNewUserInterest(userInterest);
     }

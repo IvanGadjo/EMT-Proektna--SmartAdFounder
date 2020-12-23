@@ -30,13 +30,15 @@ public class FoundAdvertsController {
     }
 
     @PatchMapping("/editFoundAdvert")
-    public FoundAdvert editFoundAdvert(@RequestBody FoundAdvert newFoundAdvert){
-        return foundAdvertService.editFoundAdvert(newFoundAdvert);
+    public FoundAdvert editFoundAdvert(@RequestBody FoundAdvert newFoundAdvert,
+                                       @RequestParam Long userInterestId){
+        return foundAdvertService.editFoundAdvert(newFoundAdvert, userInterestId);
     }
 
     @PostMapping("/createFoundAdvert")
-    public FoundAdvert createFoundAdvert(@RequestBody FoundAdvert user){
-        return foundAdvertService.createNewFoundAdvert(user);
+    public FoundAdvert createFoundAdvert(@RequestBody FoundAdvert user,
+                                         @RequestParam Long userInterestId){
+        return foundAdvertService.createNewFoundAdvert(user, userInterestId);
     }
 
     @DeleteMapping("/{id}")

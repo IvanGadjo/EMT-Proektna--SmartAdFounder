@@ -10,9 +10,9 @@ public interface FoundAdvertService {
 
     FoundAdvert findFoundAdvertById(Long id);
 
-    FoundAdvert editFoundAdvert(FoundAdvert newFoundAdvert);
+    FoundAdvert editFoundAdvert(FoundAdvert newFoundAdvert, Long userInterestId);
 
-    FoundAdvert createNewFoundAdvert(FoundAdvert foundAdvert);
+    FoundAdvert createNewFoundAdvert(FoundAdvert foundAdvert, Long userInterestId);
 
     void deleteFoundAdvertById(Long id);
 }

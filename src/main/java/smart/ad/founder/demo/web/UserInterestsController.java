@@ -38,17 +38,18 @@ public class UserInterestsController {
 
     @PatchMapping("/editUserInterest")
     public UserInterest editUserInterest(@RequestBody UserInterest newUserInterest,
-                                         @RequestParam Long userId,
-                                         @RequestParam(required = false) Long foundAdvertId) {
-        return userInterestsService.editUserInterest(newUserInterest,  userId, foundAdvertId);
+                                         @RequestParam Long userId) {
+        return userInterestsService.editUserInterest(newUserInterest,  userId);
     }
 
     @PostMapping("/createUserInterest")
     public UserInterest createUserInterest(@RequestBody UserInterest userInterest,
-                                           @RequestParam Long userId,
-                                           @RequestParam(required = false) Long foundAdvertId) {
-        return userInterestsService.addNewUserInterest(userInterest, userId, foundAdvertId);
+                                           @RequestParam Long userId) {
+        return userInterestsService.addNewUserInterest(userInterest, userId);
     }
+
+
+
 
     @DeleteMapping("/{id}")
     public void deleteUserInterest(@PathVariable("id") Long id) {

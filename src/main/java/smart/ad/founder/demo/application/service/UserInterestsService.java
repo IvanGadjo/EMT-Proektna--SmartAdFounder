@@ -10,9 +10,9 @@ public interface UserInterestsService {
 
     UserInterest findUserInterestById(Long id);
 
-    UserInterest editUserInterest(UserInterest newUserInterest, Long userId, Long foundAdvertId);
+    UserInterest editUserInterest(UserInterest newUserInterest, Long userId);
 
-    UserInterest addNewUserInterest(UserInterest userInterest, Long userId, Long foundAdvertId);
+    UserInterest addNewUserInterest(UserInterest userInterest, Long userId);
 
     void deleteUserInterestById(Long id);
 }

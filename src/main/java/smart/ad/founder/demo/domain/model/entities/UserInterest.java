@@ -7,6 +7,8 @@ import smart.ad.founder.demo.domain.model.valueObjects.Keywords;
 import smart.ad.founder.demo.domain.model.valueObjects.TimeValObject;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "usersInterests")
@@ -50,10 +52,10 @@ public class UserInterest {
     @JsonIgnore
     User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "userInterest", fetch = FetchType.EAGER)
     @Nullable
-    @JsonIgnore
-    private FoundAdvert foundAdvert;
+    private List<FoundAdvert> foundAdverts;
 
     @SuppressWarnings("unused")
     public UserInterest() {
@@ -67,7 +69,7 @@ public class UserInterest {
         this.category = category;
         this.region = region;
         this.active = active;
-        //foundAdverts = new ArrayList<>();
+        foundAdverts = new ArrayList<>();
     }
 
 
@@ -96,8 +98,8 @@ public class UserInterest {
         this.user = user;
     }
 
-    public void setFoundAdvert(FoundAdvert foundAdvert) {
-        this.foundAdvert = foundAdvert;
+    public void setFoundAdverts(List<FoundAdvert> foundAdverts) {
+        this.foundAdverts = foundAdverts;
     }
 
     // add keywords f-ja

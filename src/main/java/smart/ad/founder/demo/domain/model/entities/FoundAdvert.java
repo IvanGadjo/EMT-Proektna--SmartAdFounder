@@ -1,7 +1,9 @@
 package smart.ad.founder.demo.domain.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,10 +25,10 @@ public class FoundAdvert {
     @Column(name = "ad_urls")
     private String url;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    private UserInterest userInterest;
-    @OneToMany(mappedBy = "foundAdvert", fetch = FetchType.EAGER)
-    private List<UserInterest> userInterests;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    // @Nullable
+    private UserInterest userInterest;
 
     @SuppressWarnings("unused")
     public FoundAdvert() {
@@ -41,7 +43,7 @@ public class FoundAdvert {
         this.url = url;
     }
 
-    public void setUserInterest(List<UserInterest> userInterests) {
-        this.userInterests = userInterests;
+    public void setUserInterest(UserInterest userInterest) {
+        this.userInterest = userInterest;
     }
 }
