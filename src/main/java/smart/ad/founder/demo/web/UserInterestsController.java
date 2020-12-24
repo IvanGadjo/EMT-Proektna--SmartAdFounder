@@ -6,9 +6,11 @@ import smart.ad.founder.demo.application.service.rest.RestService;
 import smart.ad.founder.demo.domain.model.entities.FoundAdvert;
 import smart.ad.founder.demo.domain.model.entities.UserInterest;
 import smart.ad.founder.demo.domain.model.valueObjects.Keywords;
+import smart.ad.founder.demo.domain.model.valueObjects.TimeValObject;
 
 import javax.websocket.server.PathParam;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,11 +64,24 @@ public class UserInterestsController {
     @GetMapping("/test/reklama5")
     public List<FoundAdvert> testReklama5() throws IOException {
 
-        List<String> okwrds = new ArrayList<>();
-        okwrds.add("Sandero");
-        okwrds.add("Dajtenok");
 
-        Keywords keywords = new Keywords("Dacia", okwrds);
-        return restService.getAdsUrls_reklama5(keywords);
+        // TODO: Koga se prima od front keywords, ke mora sve sto e so prazni mesta da go podelis
+        // na main i other keywords. pr userot vnesol Dacia Sandero 45, ti tuka go delis na Dacia (mainKw),
+        // Sandero (prv otherKw) i 45 (vtor OtherKw)
+
+        List<String> okwrds = new ArrayList<>();
+        okwrds.add("Fabia");
+        Keywords keywords = new Keywords("Skoda", okwrds);
+
+        TimeValObject tvo = new TimeValObject(LocalDateTime.now(), LocalDateTime.of(2021,1,1,1,1));
+        String category = "Avtomobili";
+        String region = "Veles";
+
+        // TODO: tuka ke treba na sekoj pola saat da se povikuva metodot od servisot, ili mozebi taa logika da e vo samiot servis,
+        // => metod sto ke se izvrsuva na 30 min i ke go povikuva vnatresniot metod sto prai http requests
+
+        UserInterest userInterest = new UserInterest(keywords, tvo, category, region, true);
+
+        return restService.getAdsUrls_reklama5(userInterest);
     }
 }
