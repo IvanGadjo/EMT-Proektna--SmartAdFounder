@@ -6,10 +6,15 @@ import smart.ad.founder.demo.application.repo.FoundAdvertsRepo;
 import smart.ad.founder.demo.application.repo.UserInterestsRepo;
 import smart.ad.founder.demo.application.repo.UsersRepo;
 import smart.ad.founder.demo.application.service.UserInterestsService;
+import smart.ad.founder.demo.application.service.rest.RestServiceReklama5;
 import smart.ad.founder.demo.domain.model.entities.FoundAdvert;
 import smart.ad.founder.demo.domain.model.entities.User;
 import smart.ad.founder.demo.domain.model.entities.UserInterest;
+import smart.ad.founder.demo.domain.model.valueObjects.Keywords;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,11 +27,14 @@ public class UserInterestsServiceImpl implements UserInterestsService {
     UsersRepo usersRepo;
     FoundAdvertsRepo foundAdvertsRepo;
 
+    RestServiceReklama5 restServiceReklama5;
+
     public UserInterestsServiceImpl(UserInterestsRepo userInterestsRepo, UsersRepo usersRepo,
-                                    FoundAdvertsRepo foundAdvertsRepo) {
+                                    FoundAdvertsRepo foundAdvertsRepo, RestServiceReklama5 restServiceReklama5) {
         this.userInterestsRepo = userInterestsRepo;
         this.usersRepo = usersRepo;
         this.foundAdvertsRepo = foundAdvertsRepo;
+        this.restServiceReklama5 = restServiceReklama5;
     }
 
     @Override
@@ -41,24 +49,53 @@ public class UserInterestsServiceImpl implements UserInterestsService {
 
 
     @Override
-    public UserInterest editUserInterest(UserInterest newUserInterest, Long userId) {
+    public UserInterest editUserInterest(UserInterest newUserInterest, Long userId) throws IOException {
         User theUser = usersRepo.findById(userId);
         newUserInterest.setUser(theUser);
 
-        return userInterestsRepo.editUserInterest(newUserInterest);
+        // filter keywords
+        Keywords restructuredKeywords = restructureKeywords(newUserInterest.getKeywords());
+        newUserInterest.setKeywords(restructuredKeywords);
+
+        UserInterest savedUserInterest = userInterestsRepo.editUserInterest(newUserInterest);
+
+        // perform timed calls to reklama5
+        restServiceReklama5.getAdsUrls_timed(savedUserInterest);
+
+        return savedUserInterest;
     }
 
     @Override
-    public UserInterest addNewUserInterest(UserInterest userInterest, Long userId) {
+    public UserInterest addNewUserInterest(UserInterest userInterest, Long userId) throws IOException {
         User theUser = usersRepo.findById(userId);
         userInterest.setUser(theUser);
 
-        return userInterestsRepo.saveNewUserInterest(userInterest);
+        // filter keywords
+        Keywords restructuredKeywords = restructureKeywords(userInterest.getKeywords());
+        userInterest.setKeywords(restructuredKeywords);
+
+        UserInterest savedUserInterest = userInterestsRepo.saveNewUserInterest(userInterest);
+
+        // perform timed calls to reklama5
+        restServiceReklama5.getAdsUrls_timed(savedUserInterest);
+
+        return savedUserInterest;
     }
 
     @Override
     public void deleteUserInterestById(Long id) {
         userInterestsRepo.deleteById(id);
+    }
+
+
+    public Keywords restructureKeywords(Keywords keywords){
+        String []keywordsArray = keywords.getMainKeyword().split(" ");
+        String mainKeyword = keywordsArray[0];
+        List<String> otherKeywords = new ArrayList<>();
+
+        otherKeywords.addAll(Arrays.asList(keywordsArray).subList(1, keywordsArray.length));
+
+        return new Keywords(mainKeyword, otherKeywords);
     }
 
 }

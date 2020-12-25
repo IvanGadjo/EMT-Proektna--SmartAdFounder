@@ -2,13 +2,12 @@ package smart.ad.founder.demo.web;
 
 import org.springframework.web.bind.annotation.*;
 import smart.ad.founder.demo.application.service.UserInterestsService;
-import smart.ad.founder.demo.application.service.rest.RestService;
+import smart.ad.founder.demo.application.service.rest.RestServiceReklama5;
 import smart.ad.founder.demo.domain.model.entities.FoundAdvert;
 import smart.ad.founder.demo.domain.model.entities.UserInterest;
 import smart.ad.founder.demo.domain.model.valueObjects.Keywords;
 import smart.ad.founder.demo.domain.model.valueObjects.TimeValObject;
 
-import javax.websocket.server.PathParam;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,11 +20,11 @@ import java.util.List;
 public class UserInterestsController {
 
     UserInterestsService userInterestsService;
-    RestService restService;
+    RestServiceReklama5 restServiceReklama5;
 
-    public UserInterestsController(UserInterestsService userInterestsService, RestService restService) {
+    public UserInterestsController(UserInterestsService userInterestsService, RestServiceReklama5 restServiceReklama5) {
         this.userInterestsService = userInterestsService;
-        this.restService = restService;
+        this.restServiceReklama5 = restServiceReklama5;
     }
 
     @GetMapping("/all")
@@ -40,13 +39,13 @@ public class UserInterestsController {
 
     @PatchMapping("/editUserInterest")
     public UserInterest editUserInterest(@RequestBody UserInterest newUserInterest,
-                                         @RequestParam Long userId) {
+                                         @RequestParam Long userId) throws IOException {
         return userInterestsService.editUserInterest(newUserInterest,  userId);
     }
 
     @PostMapping("/createUserInterest")
     public UserInterest createUserInterest(@RequestBody UserInterest userInterest,
-                                           @RequestParam Long userId) {
+                                           @RequestParam Long userId) throws IOException {
         return userInterestsService.addNewUserInterest(userInterest, userId);
     }
 
@@ -82,6 +81,6 @@ public class UserInterestsController {
 
         UserInterest userInterest = new UserInterest(keywords, tvo, category, region, true);
 
-        return restService.getAdsUrls_reklama5(userInterest);
+        return restServiceReklama5.getAdsUrls_reklama5(userInterest);
     }
 }

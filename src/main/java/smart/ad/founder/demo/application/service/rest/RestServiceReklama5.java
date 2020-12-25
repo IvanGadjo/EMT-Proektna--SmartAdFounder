@@ -20,17 +20,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class RestService {
+public class RestServiceReklama5 {
 
     private FactoryClass factory;
 
-    public RestService(FactoryClass factory){
+    public RestServiceReklama5(FactoryClass factory){
         this.factory = factory;
     }
 
-    public List<FoundAdvert> getAdsUrls_reklama5(UserInterest userInterest) throws IOException {
+    public void getAdsUrls_timed(UserInterest userInterest) throws IOException {
 
-        // TODO: Filter-ni gi main keyw i other keyw mesto prazno mesto da sodrzi plus
+        // perform na sekoj pola saat
+        getAdsUrls_reklama5(userInterest);
+
+    }
+
+    public List<FoundAdvert> getAdsUrls_reklama5(UserInterest userInterest) throws IOException {
 
         String url = constructReklama5Url(userInterest);
 
