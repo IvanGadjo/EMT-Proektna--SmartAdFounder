@@ -45,7 +45,7 @@ public class RestServiceReklama5 {
         Elements adLinks = doc.getElementsByClass("SearchAdTitle");
         List<String> foundAdvertsUrls = new ArrayList<>();
         adLinks.forEach(el -> {
-            System.out.println(el.toString());
+            // System.out.println(el.toString());
             String secondPart = el.toString().substring(9,30);
             // String foundAdTitle = el.toString();   // Mozes i title da vadis za vo found ad so drug .substring()
 
@@ -94,7 +94,7 @@ public class RestServiceReklama5 {
         if(category.equals("Avtomobili")) return "24";
         if(category.equals("Stanovi")) return "159";
         if(category.equals("Kukji/Vili")) return "158";
-        if(category.equals("Mobilni telfoni")) return "559";
+        if(category.equals("Mobilni telefoni")) return "559";
         if(category.equals("Desktop kompjuteri")) return "581";
         if(category.equals("Laptop kompjuteri")) return "582";
         return "0";

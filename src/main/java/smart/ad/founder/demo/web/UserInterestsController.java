@@ -2,6 +2,7 @@ package smart.ad.founder.demo.web;
 
 import org.springframework.web.bind.annotation.*;
 import smart.ad.founder.demo.application.service.UserInterestsService;
+import smart.ad.founder.demo.application.service.rest.RestServicePazar3;
 import smart.ad.founder.demo.application.service.rest.RestServiceReklama5;
 import smart.ad.founder.demo.domain.model.entities.FoundAdvert;
 import smart.ad.founder.demo.domain.model.entities.UserInterest;
@@ -21,10 +22,13 @@ public class UserInterestsController {
 
     UserInterestsService userInterestsService;
     RestServiceReklama5 restServiceReklama5;
+    RestServicePazar3 restServicePazar3;
 
-    public UserInterestsController(UserInterestsService userInterestsService, RestServiceReklama5 restServiceReklama5) {
+    public UserInterestsController(UserInterestsService userInterestsService, RestServiceReklama5 restServiceReklama5,
+                                    RestServicePazar3 restServicePazar3) {
         this.userInterestsService = userInterestsService;
         this.restServiceReklama5 = restServiceReklama5;
+        this.restServicePazar3 = restServicePazar3;
     }
 
     @GetMapping("/all")
@@ -69,18 +73,19 @@ public class UserInterestsController {
         // Sandero (prv otherKw) i 45 (vtor OtherKw)
 
         List<String> okwrds = new ArrayList<>();
-        okwrds.add("Fabia");
-        Keywords keywords = new Keywords("Skoda", okwrds);
+        okwrds.add("sandero");
+        Keywords keywords = new Keywords("dacia", okwrds);
 
         TimeValObject tvo = new TimeValObject(LocalDateTime.now(), LocalDateTime.of(2021,1,1,1,1));
         String category = "Avtomobili";
-        String region = "Veles";
+        String region = "Skopje";
 
         // TODO: tuka ke treba na sekoj pola saat da se povikuva metodot od servisot, ili mozebi taa logika da e vo samiot servis,
         // => metod sto ke se izvrsuva na 30 min i ke go povikuva vnatresniot metod sto prai http requests
 
         UserInterest userInterest = new UserInterest(keywords, tvo, category, region, true);
 
-        return restServiceReklama5.getAdsUrls_reklama5(userInterest);
+//        return restServiceReklama5.getAdsUrls_reklama5(userInterest);
+        return restServicePazar3.getAdsUrls_pazar3(userInterest);
     }
 }
