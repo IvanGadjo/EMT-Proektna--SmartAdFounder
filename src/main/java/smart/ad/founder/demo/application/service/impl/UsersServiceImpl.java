@@ -35,7 +35,10 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public User createNewUser(User user) {
-        return usersRepo.createNewUser(user);
+        User possibleCreatedUser = usersRepo.findById(user.getId());
+        if(possibleCreatedUser == null)
+            return usersRepo.createNewUser(user);
+        else return possibleCreatedUser;
     }
 
     @Override
