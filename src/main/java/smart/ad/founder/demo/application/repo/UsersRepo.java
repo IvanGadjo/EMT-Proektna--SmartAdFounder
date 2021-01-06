@@ -31,9 +31,10 @@ public class UsersRepo {
 
     public User editUser(User newUser){
         User old = userRepoJPA.findById(newUser.getId()).orElseThrow(RuntimeException::new);
-        old.setUserToken(newUser.getUserToken());
-        old.setActiveInterests(newUser.getActiveInterests());
-        old.setPastInterests(newUser.getPastInterests());
+        old.setUserEmail(newUser.getUserEmail());
+//        old.setActiveInterests(newUser.getActiveInterests());
+//        old.setPastInterests(newUser.getPastInterests());
+        old.setUserInterests(newUser.getUserInterests());
 
         return userRepoJPA.save(old);
     }
