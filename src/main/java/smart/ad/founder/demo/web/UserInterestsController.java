@@ -36,6 +36,11 @@ public class UserInterestsController {
         return userInterestsService.findAllUserInterests();
     }
 
+    @GetMapping("/all/byUser/{id}")
+    public List<UserInterest> getAllUserInterestsOfUser(@PathVariable("id") Long userId) {
+        return userInterestsService.findAllUserInterestsOfUser(userId);
+    }
+
     @GetMapping("/{id}")
     public UserInterest getUserInterestById(@PathVariable("id") Long id) {
         return userInterestsService.findUserInterestById(id);

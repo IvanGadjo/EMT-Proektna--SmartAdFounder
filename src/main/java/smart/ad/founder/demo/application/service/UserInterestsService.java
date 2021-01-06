@@ -9,6 +9,8 @@ public interface UserInterestsService {
 
     List<UserInterest> findAllUserInterests();
 
+    List<UserInterest> findAllUserInterestsOfUser(Long userId);
+
     UserInterest findUserInterestById(Long id);
 
     UserInterest editUserInterest(UserInterest newUserInterest, Long userId) throws Exception;

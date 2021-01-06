@@ -25,6 +25,13 @@ public class User {
     @Column(name = "userTokens")        // TODO: Ova treba da bide USER EMAIL
     private String userToken;
 
+
+    // FIXME: Ova pravi samo edna konekcija kaj db - kaj userInterest se cuva samo userId
+    // nema distinkcija pomegju dveve listi, pa zatoa koga se kreira userInterest go stava
+    // i vo dvete listi. Nie sega ke proveruvame spored active prop na userInterestot,
+    // ama ova treba da bide samo edna lista
+
+
     @Fetch(value = FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<UserInterest> activeInterests;

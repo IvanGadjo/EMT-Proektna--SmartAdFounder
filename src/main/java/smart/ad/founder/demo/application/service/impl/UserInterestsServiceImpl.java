@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -41,6 +42,15 @@ public class UserInterestsServiceImpl implements UserInterestsService {
     @Override
     public List<UserInterest> findAllUserInterests() {
         return userInterestsRepo.findAll();
+    }
+
+    @Override
+    public List<UserInterest> findAllUserInterestsOfUser(Long userId) {
+        List<UserInterest> userInterestsOfUser = userInterestsRepo.findAll().stream().filter(usInt -> {
+            return usInt.getUser().getId() == userId;
+        }).collect(Collectors.toList());
+
+        return userInterestsOfUser;
     }
 
     @Override
