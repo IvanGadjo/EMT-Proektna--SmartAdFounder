@@ -28,12 +28,6 @@ public class RestServiceReklama5 {
         this.factory = factory;
     }
 
-    public void getAdsUrls_timed(UserInterest userInterest) throws IOException {
-
-        // perform na sekoj pola saat
-        getAdsUrls_reklama5(userInterest);
-
-    }
 
     public List<FoundAdvert> getAdsUrls_reklama5(UserInterest userInterest) throws IOException {
 
@@ -53,6 +47,8 @@ public class RestServiceReklama5 {
         });
 
         List<FoundAdvert> foundAdverts = foundAdvertsUrls.stream().map(fau -> factory.createNewFoundAdvert(fau)).collect(Collectors.toList());
+        foundAdverts.stream().forEach(fa -> fa.setUserInterest(userInterest));
+
         return foundAdverts;
     }
 

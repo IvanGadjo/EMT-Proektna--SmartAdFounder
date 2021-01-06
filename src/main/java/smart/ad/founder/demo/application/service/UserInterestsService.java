@@ -11,9 +11,9 @@ public interface UserInterestsService {
 
     UserInterest findUserInterestById(Long id);
 
-    UserInterest editUserInterest(UserInterest newUserInterest, Long userId) throws IOException;
+    UserInterest editUserInterest(UserInterest newUserInterest, Long userId) throws Exception;
 
-    UserInterest addNewUserInterest(UserInterest userInterest, Long userId) throws IOException;
+    UserInterest addNewUserInterest(UserInterest userInterest, Long userId) throws Exception;
 
     void deleteUserInterestById(Long id);
 }

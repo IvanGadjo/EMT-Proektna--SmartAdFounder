@@ -43,13 +43,13 @@ public class UserInterestsController {
 
     @PatchMapping("/editUserInterest")
     public UserInterest editUserInterest(@RequestBody UserInterest newUserInterest,
-                                         @RequestParam Long userId) throws IOException {
+                                         @RequestParam Long userId) throws Exception {
         return userInterestsService.editUserInterest(newUserInterest,  userId);
     }
 
     @PostMapping("/createUserInterest")
     public UserInterest createUserInterest(@RequestBody UserInterest userInterest,
-                                           @RequestParam Long userId) throws IOException {
+                                           @RequestParam Long userId) throws Exception {
         return userInterestsService.addNewUserInterest(userInterest, userId);
     }
 
@@ -65,7 +65,7 @@ public class UserInterestsController {
 
     // TESTING REST SERVICE
     @GetMapping("/test/reklama5")
-    public List<FoundAdvert> testReklama5() throws IOException {
+    public List<FoundAdvert> testReklama5() throws Exception {
 
 
         // TODO: Koga se prima od front keywords, ke mora sve sto e so prazni mesta da go podelis
@@ -86,6 +86,7 @@ public class UserInterestsController {
         UserInterest userInterest = new UserInterest(keywords, tvo, category, region, true);
 
 //        return restServiceReklama5.getAdsUrls_reklama5(userInterest);
-        return restServicePazar3.getAdsUrls_pazar3(userInterest);
+        restServicePazar3.getAdsUrls_pazar3(userInterest);
+        return null;
     }
 }

@@ -8,6 +8,7 @@ import smart.ad.founder.demo.application.repo.UsersRepo;
 import smart.ad.founder.demo.application.service.UserInterestsService;
 import smart.ad.founder.demo.application.service.rest.RestServicePazar3;
 import smart.ad.founder.demo.application.service.rest.RestServiceReklama5;
+import smart.ad.founder.demo.application.service.rest.RestServicesScheduler;
 import smart.ad.founder.demo.domain.model.entities.FoundAdvert;
 import smart.ad.founder.demo.domain.model.entities.User;
 import smart.ad.founder.demo.domain.model.entities.UserInterest;
@@ -28,17 +29,13 @@ public class UserInterestsServiceImpl implements UserInterestsService {
     UsersRepo usersRepo;
     FoundAdvertsRepo foundAdvertsRepo;
 
-    RestServiceReklama5 restServiceReklama5;
-    RestServicePazar3 restServicePazar3;
 
     public UserInterestsServiceImpl(UserInterestsRepo userInterestsRepo, UsersRepo usersRepo,
-                                    FoundAdvertsRepo foundAdvertsRepo, RestServiceReklama5 restServiceReklama5,
-                                    RestServicePazar3 restServicePazar3) {
+                                    FoundAdvertsRepo foundAdvertsRepo
+    ) {
         this.userInterestsRepo = userInterestsRepo;
         this.usersRepo = usersRepo;
         this.foundAdvertsRepo = foundAdvertsRepo;
-        this.restServiceReklama5 = restServiceReklama5;
-        this.restServicePazar3 = restServicePazar3;
     }
 
     @Override
@@ -54,7 +51,7 @@ public class UserInterestsServiceImpl implements UserInterestsService {
 
     // TODO: testiraj dali pravi queries kon servisite
     @Override
-    public UserInterest editUserInterest(UserInterest newUserInterest, Long userId) throws IOException {
+    public UserInterest editUserInterest(UserInterest newUserInterest, Long userId) throws Exception {
         User theUser = usersRepo.findById(userId);
         newUserInterest.setUser(theUser);
 
@@ -65,15 +62,15 @@ public class UserInterestsServiceImpl implements UserInterestsService {
         UserInterest savedUserInterest = userInterestsRepo.editUserInterest(newUserInterest);
 
         // perform timed calls to reklama5 and pazar3
-        restServiceReklama5.getAdsUrls_timed(savedUserInterest);
-        restServicePazar3.getAdsUrls_timed(savedUserInterest);
+        // restServiceReklama5.getAdsUrls_timed(savedUserInterest);
+        // restServicePazar3.getAdsUrls_timed(savedUserInterest);
 
         return savedUserInterest;
     }
 
     // TODO: testiraj dali pravi queries kon servisite
     @Override
-    public UserInterest addNewUserInterest(UserInterest userInterest, Long userId) throws IOException {
+    public UserInterest addNewUserInterest(UserInterest userInterest, Long userId) throws Exception {
         User theUser = usersRepo.findById(userId);
         userInterest.setUser(theUser);
 
@@ -84,8 +81,8 @@ public class UserInterestsServiceImpl implements UserInterestsService {
         UserInterest savedUserInterest = userInterestsRepo.saveNewUserInterest(userInterest);
 
         // perform timed calls to reklama5 and pazar3
-        restServiceReklama5.getAdsUrls_timed(savedUserInterest);
-        restServicePazar3.getAdsUrls_timed(savedUserInterest);
+        // restServiceReklama5.getAdsUrls_timed(savedUserInterest);
+        // restServicePazar3.getAdsUrls_timed(savedUserInterest);
 
         return savedUserInterest;
     }

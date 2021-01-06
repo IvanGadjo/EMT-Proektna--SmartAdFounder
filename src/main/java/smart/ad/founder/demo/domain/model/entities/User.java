@@ -22,7 +22,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "userTokens")
+    @Column(name = "userTokens")        // TODO: Ova treba da bide USER EMAIL
     private String userToken;
 
     @Fetch(value = FetchMode.SUBSELECT)
