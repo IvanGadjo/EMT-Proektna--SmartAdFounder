@@ -30,7 +30,7 @@ public class RestServicesScheduler {
         this.foundAdvertService = foundAdvertService;
     }
 
-//    @Scheduled(fixedDelay = 600000)
+//    @Scheduled(fixedDelay = 600000)       // 10 min
     public void callRestServiceMethods() {
 
         List<UserInterest> userInterests = userInterestsService.findAllUserInterests().stream().filter(ui -> {

@@ -24,6 +24,8 @@ public class KafkaController {
     @Autowired
     private KafkaTemplate<String, KafkaFoundAdMessage> kafkaTemplate;
 
+
+    // TODO: Shut down this endpoint after everything works with the KafkaServiceScheduler
     @PostMapping(value = "/send", consumes = "application/json", produces = "application/json")
     public void sendMessage(@RequestBody KafkaFoundAdMessage kafkaFoundAdMessage) {
 

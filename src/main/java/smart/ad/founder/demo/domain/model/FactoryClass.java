@@ -2,6 +2,7 @@ package smart.ad.founder.demo.domain.model;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import smart.ad.founder.demo.domain.model.DTOs.KafkaFoundAdMessage;
 import smart.ad.founder.demo.domain.model.entities.FoundAdvert;
 import smart.ad.founder.demo.domain.model.entities.User;
 import smart.ad.founder.demo.domain.model.entities.UserInterest;
@@ -22,5 +23,9 @@ public class FactoryClass {
 
     public FoundAdvert createNewFoundAdvert(String url){
         return new FoundAdvert(url);
+    }
+
+    public KafkaFoundAdMessage createNewKafkaFoundAdMessage(String adUrl, Long userInterestId){
+        return new KafkaFoundAdMessage(adUrl, userInterestId);
     }
 }

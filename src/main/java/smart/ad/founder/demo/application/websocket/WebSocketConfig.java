@@ -1,4 +1,4 @@
-package smart.ad.founder.demo.application.kafka;
+package smart.ad.founder.demo.application.websocket;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

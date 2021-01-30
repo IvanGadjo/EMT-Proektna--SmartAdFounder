@@ -1,4 +1,4 @@
-package smart.ad.founder.demo.application.kafka;
+package smart.ad.founder.demo.application.kafka.config;
 
 
 import org.apache.kafka.clients.producer.ProducerConfig;
