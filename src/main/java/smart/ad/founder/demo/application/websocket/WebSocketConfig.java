@@ -13,10 +13,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // chat client will use this to connect to the server
-//        registry.addEndpoint("/kafka-chat").setAllowedOrigins("*");
+//        registry.addEndpoint("/kafka-chat");
 //        registry.addEndpoint("/kafka-chat").setAllowedOrigins("*").withSockJS();
-        registry.addEndpoint("/kafka-chat");
-        registry.addEndpoint("/kafka-chat").withSockJS();
+        registry.addEndpoint("/kafka-chat").setAllowedOriginPatterns("*").withSockJS();
     }
 
     @Override
@@ -24,15 +23,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.enableSimpleBroker("/topic");
         registry.setApplicationDestinationPrefixes("/app");
 
-//        registry.setApplicationDestinationPrefixes("/");
-//        registry.setApplicationDestinationPrefixes("/sendMessage");
-//        registry.setApplicationDestinationPrefixes("/api/kafkaMessages");
-//        registry.setApplicationDestinationPrefixes("/app/api/kafkaMessages/sendMessage");
-//        registry.setApplicationDestinationPrefixes("/app/sendMessage");
-
-//        registry.enableSimpleBroker("/topic/");
-//        registry.enableSimpleBroker("/topic");
-//        registry.enableSimpleBroker("/topic/group");
     }
 
 }
