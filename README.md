@@ -8,3 +8,6 @@ This project is built with Java Spring. It is following the DDD (Domain Driven D
 - Services: CRUD services for model classes, rest services for scheduling reklama5 and pazar3 requests
 - Other tools: Apache Kafka for message scheduling, WebSocket for connection with the frontend
 - Database: PostgreSQL
+
+Front end code:
+https://github.com/andrejhris23/SmartAdFounder-FrontEnd
