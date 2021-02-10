@@ -6,6 +6,7 @@ import smart.ad.founder.demo.domain.model.entities.User;
 import smart.ad.founder.demo.domain.repo.UserRepoJPA;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -23,6 +24,17 @@ public class UsersRepo {
 
     public User findById(Long id){
         return userRepoJPA.findById(id).orElseThrow(RuntimeException::new);
+    }
+
+    public User findById_2(Long id){
+        Optional<User> usr = userRepoJPA.findById(id);
+        if(usr.isEmpty()){
+            System.out.println("UsEr EmPtY");
+            return null;
+        } else {
+            System.out.println("UsEr NoT_EmPtY");
+            return usr.get();
+        }
     }
 
     public User createNewUser(User user){

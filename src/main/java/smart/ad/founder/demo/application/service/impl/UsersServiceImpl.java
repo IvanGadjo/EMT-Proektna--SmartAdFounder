@@ -35,10 +35,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public User createNewUser(User user) {
-        User possibleCreatedUser = usersRepo.findById(user.getId());
-        if(possibleCreatedUser == null)
-            return usersRepo.createNewUser(user);
-        else return possibleCreatedUser;
+//        User possibleCreatedUser = usersRepo.findById(user.getId());
+        User possibleCreatedUser = usersRepo.findById_2(user.getId());
+        if(possibleCreatedUser == null){
+            User usr = usersRepo.createNewUser(user);
+            System.out.println(usr.getUserEmail());
+            return usr;
+        }
+        else {
+            System.out.println(possibleCreatedUser.getUserEmail());
+            return possibleCreatedUser;
+        }
     }
 
     @Override
