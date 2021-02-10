@@ -35,6 +35,7 @@ public class UserInterestsRepo {
         old.setCategory(newUserInterest.getCategory());
         old.setUser(newUserInterest.getUser());
         old.setFoundAdverts(newUserInterest.getFoundAdverts());
+        old.setActive(newUserInterest.isActive());
         return userInterestRepoJPA.save(old);
     }
 

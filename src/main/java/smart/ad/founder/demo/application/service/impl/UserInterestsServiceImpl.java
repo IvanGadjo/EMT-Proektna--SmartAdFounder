@@ -65,6 +65,8 @@ public class UserInterestsServiceImpl implements UserInterestsService {
         User theUser = usersRepo.findById(userId);
         newUserInterest.setUser(theUser);
 
+        System.out.println(newUserInterest.getId()+ " " + newUserInterest.isActive());
+
         // filter keywords
         Keywords restructuredKeywords = restructureKeywords(newUserInterest.getKeywords());
         newUserInterest.setKeywords(restructuredKeywords);
