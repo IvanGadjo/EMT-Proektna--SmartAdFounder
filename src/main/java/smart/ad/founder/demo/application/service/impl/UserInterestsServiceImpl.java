@@ -107,6 +107,10 @@ public class UserInterestsServiceImpl implements UserInterestsService {
 
     public Keywords restructureKeywords(Keywords keywords){
         String []keywordsArray = keywords.getMainKeyword().split(" ");
+
+        System.out.println(keywords.getMainKeyword());
+//        System.out.println(keywords.getOtherKeywords().get(0));
+
         String mainKeyword = keywordsArray[0];
         List<String> otherKeywords = new ArrayList<>();
 
