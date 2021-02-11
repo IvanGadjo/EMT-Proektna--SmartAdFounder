@@ -30,8 +30,10 @@ public class RestServicesScheduler {
         this.foundAdvertService = foundAdvertService;
     }
 
-//    @Scheduled(fixedDelay = 600000)       // 10 min
+    @Scheduled(fixedDelay = 30000)       // 30 sec
     public void callRestServiceMethods() {
+
+        System.out.println("----------------- Search for Ads 30 sec ---------------");
 
         List<UserInterest> userInterests = userInterestsService.findAllUserInterests().stream().filter(ui -> {
             return ui.isActive();
@@ -43,7 +45,11 @@ public class RestServicesScheduler {
                 foundAdverts.addAll(restServiceReklama5.getAdsUrls_reklama5(ui));
 
                 foundAdverts.forEach(fa -> {
-                    foundAdvertService.createNewFoundAdvert(fa, fa.getUserInterest().getId());
+                    List<String> alreadyFoundAdUrls = foundAdvertService.findAllFoundAdverts().stream()
+                            .map(foundAdvFromDb -> foundAdvFromDb.getUrl()).collect(Collectors.toList());
+
+                    if(!alreadyFoundAdUrls.contains(fa.getUrl()))
+                        foundAdvertService.createNewFoundAdvert(fa, fa.getUserInterest().getId());
                 });
 
                 System.out.println("DADA");

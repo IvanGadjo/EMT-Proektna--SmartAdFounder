@@ -29,7 +29,7 @@ public class KafkaServiceScheduler {
 
     // TODO: Mozebi treba da oznacuvas site poraki koi vekje se prateni na kafka?
 
-    // @Scheduled(fixedDelay = 10000)      // ova e na 10 sekundi
+     @Scheduled(fixedDelay = 30000)      // ova e na 30 sekundi
     public void sendMessageToKafka(){
         List<KafkaFoundAdMessage> kafkaMessages = new ArrayList<>();
 
@@ -37,7 +37,7 @@ public class KafkaServiceScheduler {
             kafkaMessages.add(factory.createNewKafkaFoundAdMessage(fa.getUrl(), fa.getUserInterest().getId()));
         });
 
-        System.out.println("*****Na 10 sec");
+        System.out.println("----------------- Kafka message 30 secs ---------------");
 
         kafkaMessages.forEach(km -> {
             try {

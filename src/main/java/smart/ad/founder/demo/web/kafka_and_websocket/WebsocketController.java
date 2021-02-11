@@ -12,8 +12,6 @@ import smart.ad.founder.demo.domain.model.DTOs.KafkaFoundAdMessage;
 public class WebsocketController {
 
 
-    // FIXME: Ova mora da proraboti
-    // next: Scheduled prakjanje poraki od kafka koi se citaat od foundAdverts (metod od kafka controller)
 
     @MessageMapping("/hello")
     @SendTo("/topic/group")
